@@ -1,0 +1,5 @@
+MergeSort.class: MergeSort.java
+	javac MergeSort.java
+	
+clean:
+	rm -f *.class

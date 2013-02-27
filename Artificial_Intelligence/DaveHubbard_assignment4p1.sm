@@ -1,0 +1,62 @@
+% Dave Hubbard - Assignment 4
+% CSE 471 - 10/05/2012
+
+%---- Problem 1--------------------------------
+
+first(linda; cally; rachel; sheila; brenda).
+last(ridge; mann; enfield; wish; scopefield).
+month(september; may; july; april; february).
+day(4;12;23;17;8).
+lie(lie_day;  lie_month).
+
+%1.
+:- name(linda, ridge).
+:- not bday(linda, 4).
+:- bmon(linda,september).
+
+%2.
+:- bmon(X,may), not bday(X,12), first(X).
+:- bmon(X, may), name(X, ridge), first(X).
+lied(X, lie_day) :- bmon(X, february), day(Y), first(X).
+name(X, mann) :- bmon(X, february), first(X).
+
+%3.
+name(X, enfield) :- bmon(X, september), first(X).
+:- name(cally, enfield).
+
+%4.
+lied(rachel, lie_day).
+lied(X, lie_day) :- name(X, wish), first(X).
+lied(X, lie_day) :- bday(X, 23), first(X).
+
+%5.
+lied(sheila, lie_month).
+bday(rachel, 17). 
+:- bmon(rachel,april).
+
+%6.
+bmon(brenda, may). 
+:- name(brenda, scopefield).
+bmon(cally,july). 
+:- bday(cally,8).
+
+answer (A,B,C,D,E) :- name(A,B), bmon(A,C), bday(A,D), lied(A,E), first(A), last(B), month(C), day(D), lie(E). 
+
+1{ lied(X,Y): lie(Y) } 1 :- first(X).
+1{ lied(X,lie_month): first(X) } 2 :- lie(lie_month).
+1{ lied(X,lie_day): first(X) } 3 :- lie(lie_day).
+1{ name(X,Y) : last(Y) } 1 :- first(X).
+1{ name(X,Y) : first(X) } 1 :- last(Y).
+1{ bday(X,Y) : day(Y) } 1 :- first(X).
+1{ bday(X,Y) : first(X) } 1 :- day(Y).
+1{ bmon(X,Y) : month(Y) } 1 :- first(X).
+1{ bmon(X,Y) : first(X) } 1 :- month(Y).
+
+hide.
+show answer(A,B,C,D,E).
+%show lied(X,Y).
+%show name(X,Y).
+%show bday(X,Y).
+%show bmon(X,Y).
+
+

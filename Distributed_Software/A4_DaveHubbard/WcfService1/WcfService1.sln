@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WcfService1", "WcfService1\WcfService1.csproj", "{C66A8CEA-E737-4C11-A020-A7EC6A59769E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication2", "WebApplication2\WebApplication2.csproj", "{B87348E9-4501-4DD7-9ED3-0657D38D0070}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C66A8CEA-E737-4C11-A020-A7EC6A59769E} = {C66A8CEA-E737-4C11-A020-A7EC6A59769E}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C66A8CEA-E737-4C11-A020-A7EC6A59769E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C66A8CEA-E737-4C11-A020-A7EC6A59769E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C66A8CEA-E737-4C11-A020-A7EC6A59769E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C66A8CEA-E737-4C11-A020-A7EC6A59769E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B87348E9-4501-4DD7-9ED3-0657D38D0070}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B87348E9-4501-4DD7-9ED3-0657D38D0070}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B87348E9-4501-4DD7-9ED3-0657D38D0070}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B87348E9-4501-4DD7-9ED3-0657D38D0070}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

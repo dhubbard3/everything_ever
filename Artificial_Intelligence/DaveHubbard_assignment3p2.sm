@@ -1,0 +1,43 @@
+
+% ----Problem 2-----------------------------------
+
+first(frank; steven; michael; craig; walter).
+last(thompson; smith; stewart; williams; lewis).
+total(28;30;32;34;36).
+hi(264;276;273;285;288).
+
+1{ fullname(X,Y) : first(X) }1 :- last(Y).
+1{ fullname(X,Y) : last(Y) }1 :- first(X).
+1{ totalScore(X,Y) : first(X) }1 :- total(Y).
+1{ totalScore(X,Y) : total(Y) }1 :- first(X).
+1{ hiScore(X,Y) : first(X) }1 :- hi(Y).
+1{ hiScore(X,Y) : hi(Y) }1 :- first(X).
+
+:- not fullname(steven, lewis).
+:- fullname(frank, thompson).
+:- fullname(steven, stewart).
+
+:- not hiScore(frank, 288). 
+:- totalScore(frank, 36).
+
+:- first(X), totalScore(Y, 30), hiScore(Y, Z), fullname(X, smith), first(Y), hi(Z), not hiScore(X, Z+3).
+:- totalScore(X, 36),  Z mod 2 == 0, hiScore(X, Z), first(X), hi(Z).
+:- not totalScore(michael, Y-6), totalScore(W, Y), fullname(W, williams), total(Y), first(W).
+:- hiScore(X, 273), not totalScore(Z, W-2), fullname(Z, smith), totalScore(X, W), first(X), first(Z), total(W).
+:- hiScore(X, 273), not totalScore(craig, W+2), totalScore(X, W), first(X), total(W).
+:- fullname(X, thompson), totalScore(X, Y), totalScore(walter, W), Y >= W, first(X), total(Y), total(W).
+:- fullname(X, thompson), totalScore(X, Y), totalScore(steven, Z), Y < Z, first(X), total(Y), total(Z).
+
+hide first(X).
+hide total(X).
+hide hi(X).
+hide last(X).
+
+%Unhide for answer set
+%hide fullname(X,Y).
+%hide totalScore(X,Y).
+%hide hiScore(X,Y).
+
+% ----Problem 3-----------------------------------
+
+

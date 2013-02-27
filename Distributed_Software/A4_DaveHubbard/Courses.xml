@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Courses>
+  <Course>
+    <Code Grad ="CSE 598" Undergrad="CSE 445"/>
+    <Name>Distributed Software Development</Name>
+    <Instructor>
+      <Name>
+        <First>Yinong</First>
+        <Last>Chen</Last>
+      </Name>
+      <Contact Office ="BYENG 414">
+        <Phone>(480)965-2769</Phone>
+      </Contact>
+    </Instructor>
+    <Room>BYENG M-109</Room>
+    <Cap>41</Cap>
+  </Course>
+  <Course>
+    <Code Grad ="CSE 598" Undergrad="CSE 494"/>
+    <Name>Software Integration and Engineering</Name>
+    <Instructor>
+      <Name>
+        <First>Yinong</First>
+        <Last>Chen</Last>
+      </Name>
+      <Contact Office ="BYENG 414">
+        <Phone>(480)965-2769</Phone>
+      </Contact>
+    </Instructor>
+    <Room>BYAC 210</Room>
+    <Cap>37</Cap>
+  </Course>
+  <Course>
+    <Code Grad ="CSE 598" Undergrad="CSE 460"/>
+    <Name>Software Analysis &amp; Design</Name>
+    <Instructor>
+      <Name>
+        <First>Frank</First>
+        <Last>Calliss</Last>
+      </Name>
+      <Contact Office ="None">
+        <Phone>(480)965-7544</Phone>
+      </Contact>
+    </Instructor>
+    <Room>BYAC 270</Room>
+    <Cap>46</Cap>
+  </Course>
+  <Course>
+    <Code Grad ="CSE 355" Undergrad="CSE 355"/>
+    <Name>Intro to Theoretical Computer Science</Name>
+    <Instructor>
+      <Name>
+        <First>Charles</First>
+        <Last>Colbourn</Last>
+      </Name>
+      <Contact Office ="BYENG 444">
+        <Phone>(480)727-6631</Phone>
+      </Contact>
+    </Instructor>
+    <Room>SCOB 228</Room>
+    <Cap>100</Cap>
+  </Course>
+  <Course>
+    <Code Grad ="CSE 485" Undergrad="CSE 485"/>
+    <Name>Computer Science Capstone Project I</Name>
+    <Instructor>
+      <Name>
+        <First>Debra</First>
+        <Last>Calliss</Last>
+      </Name>
+      <Contact Office ="BYENG 524">
+        <Phone>(480)965-1727</Phone>
+      </Contact>
+    </Instructor>
+    <Room>BYENG M-109</Room>
+    <Cap>46</Cap>
+  </Course>
+</Courses>

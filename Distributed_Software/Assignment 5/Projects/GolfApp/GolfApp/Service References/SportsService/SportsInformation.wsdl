@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://Romo.net/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://Romo.net/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://Romo.net/">
+      <s:element name="sportsNews">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="topics" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="sportsNewsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sportsNewsResult" type="tns:ArrayOfSportsNews" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfSportsNews">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SportsNews" type="tns:SportsNews" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SportsNews">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Title" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Url" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Source" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Date" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Snippet" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="isBreakingNews" type="s:unsignedInt" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="sportsSchedules">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="league_team" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="sportsSchedulesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sportsSchedulesResult" type="tns:ArrayOfSportsSchedule" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfSportsSchedule">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SportsSchedule" type="tns:SportsSchedule" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SportsSchedule">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Title" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Url" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="sportsVideoHighlights">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="league_team" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="sportsVideoHighlightsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sportsVideoHighlightsResult" type="tns:ArrayOfSportsHighlights" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfSportsHighlights">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SportsHighlights" type="tns:SportsHighlights" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SportsHighlights">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="PageTitle" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SourceTitle" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PlayUrl" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ClickThroughPageUrl" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="RunTime" type="s:unsignedInt" />
+          <s:element minOccurs="0" maxOccurs="1" name="StaticThumbnailUrl" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ContentType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ThumbnailWidth" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ThumbnailHeight" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ThumbnailSize" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="sportsNewsSoapIn">
+    <wsdl:part name="parameters" element="tns:sportsNews" />
+  </wsdl:message>
+  <wsdl:message name="sportsNewsSoapOut">
+    <wsdl:part name="parameters" element="tns:sportsNewsResponse" />
+  </wsdl:message>
+  <wsdl:message name="sportsSchedulesSoapIn">
+    <wsdl:part name="parameters" element="tns:sportsSchedules" />
+  </wsdl:message>
+  <wsdl:message name="sportsSchedulesSoapOut">
+    <wsdl:part name="parameters" element="tns:sportsSchedulesResponse" />
+  </wsdl:message>
+  <wsdl:message name="sportsVideoHighlightsSoapIn">
+    <wsdl:part name="parameters" element="tns:sportsVideoHighlights" />
+  </wsdl:message>
+  <wsdl:message name="sportsVideoHighlightsSoapOut">
+    <wsdl:part name="parameters" element="tns:sportsVideoHighlightsResponse" />
+  </wsdl:message>
+  <wsdl:portType name="SportsInformationSoap">
+    <wsdl:operation name="sportsNews">
+      <wsdl:input message="tns:sportsNewsSoapIn" />
+      <wsdl:output message="tns:sportsNewsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="sportsSchedules">
+      <wsdl:input message="tns:sportsSchedulesSoapIn" />
+      <wsdl:output message="tns:sportsSchedulesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="sportsVideoHighlights">
+      <wsdl:input message="tns:sportsVideoHighlightsSoapIn" />
+      <wsdl:output message="tns:sportsVideoHighlightsSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SportsInformationSoap" type="tns:SportsInformationSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="sportsNews">
+      <soap:operation soapAction="http://Romo.net/sportsNews" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sportsSchedules">
+      <soap:operation soapAction="http://Romo.net/sportsSchedules" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sportsVideoHighlights">
+      <soap:operation soapAction="http://Romo.net/sportsVideoHighlights" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="SportsInformationSoap12" type="tns:SportsInformationSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="sportsNews">
+      <soap12:operation soapAction="http://Romo.net/sportsNews" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sportsSchedules">
+      <soap12:operation soapAction="http://Romo.net/sportsSchedules" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sportsVideoHighlights">
+      <soap12:operation soapAction="http://Romo.net/sportsVideoHighlights" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SportsInformation">
+    <wsdl:port name="SportsInformationSoap" binding="tns:SportsInformationSoap">
+      <soap:address location="http://webstrar8.fulton.asu.edu/page3/SportsInformation.asmx" />
+    </wsdl:port>
+    <wsdl:port name="SportsInformationSoap12" binding="tns:SportsInformationSoap12">
+      <soap12:address location="http://webstrar8.fulton.asu.edu/page3/SportsInformation.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

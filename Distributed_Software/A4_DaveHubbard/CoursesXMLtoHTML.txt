@@ -1,0 +1,67 @@
+<html>
+  <body>
+    <h1>Available Courses</h1>
+    <table border="1">
+      <tr bgcolor="blue">
+        <td><b>Grad Code </b></td>
+        <td><b>Undergrad Code </b></td>
+        <td><b>Course Name </b></td>
+        <td><b>Instructor </b></td>
+        <td><b>Phone </b></td>
+        <td><b>Office </b></td>
+        <td><b>Room </b></td>
+        <td><b>Cap </b></td>
+      </tr>
+      <tr style="font-size: 10pt; font-family: Verdana">
+        <td>CSE 485</td>
+        <td>CSE 485</td>
+        <td>Computer Science Capstone Project I</td>
+        <td>Debra Calliss</td>
+        <td>(480)965-1727</td>
+        <td>BYENG 524</td>
+        <td>BYENG M-109</td>
+        <td>46</td>
+      </tr>
+      <tr style="font-size: 10pt; font-family: Verdana">
+        <td>CSE 598</td>
+        <td>CSE 445</td>
+        <td>Distributed Software Development</td>
+        <td>Yinong Chen</td>
+        <td>(480)965-2769</td>
+        <td>BYENG 414</td>
+        <td>BYENG M-109</td>
+        <td>41</td>
+      </tr>
+      <tr style="font-size: 10pt; font-family: Verdana">
+        <td>CSE 355</td>
+        <td>CSE 355</td>
+        <td>Intro to Theoretical Computer Science</td>
+        <td>Charles Colbourn</td>
+        <td>(480)727-6631</td>
+        <td>BYENG 444</td>
+        <td>SCOB 228</td>
+        <td>100</td>
+      </tr>
+      <tr style="font-size: 10pt; font-family: Verdana">
+        <td>CSE 598</td>
+        <td>CSE 460</td>
+        <td>Software Analysis &amp; Design</td>
+        <td>Frank Calliss</td>
+        <td>(480)965-7544</td>
+        <td>None</td>
+        <td>BYAC 270</td>
+        <td>46</td>
+      </tr>
+      <tr style="font-size: 10pt; font-family: Verdana">
+        <td>CSE 598</td>
+        <td>CSE 494</td>
+        <td>Software Integration and Engineering</td>
+        <td>Yinong Chen</td>
+        <td>(480)965-2769</td>
+        <td>BYENG 414</td>
+        <td>BYAC 210</td>
+        <td>37</td>
+      </tr>
+    </table>
+  </body>
+</html>

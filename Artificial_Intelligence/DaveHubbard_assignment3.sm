@@ -1,0 +1,87 @@
+% Dave Hubbard - Assignment 3
+% CSE 471 - 10/02/12
+
+% ----Problem 1-----------------------------------
+
+%Friends - Peter, Alec, Elliot, Ryan, Herb
+%LastNames - Wyant, Woods, Weatherby, West, Williams
+%Flavors - Grape, Orange, Lemon, Raspberry, Strawberry
+%Colors - Blue, Yellow, Orange, Green, Pink
+
+%first(peter; alec; elliot; ryan; herb).
+%last(wyant; woods; weatherby; west; williams).
+%flavor(grape; orange; lemon; raspberry; strawberry).
+%color(blue; yellow; orange; pink; green).
+
+%:- fullname(peter,wyant). 
+%:- fullname(ryan,weatherby). 
+%:- not fullname(elliot,west).
+
+%bought(alec,blue).
+%:- bought(herb, X), color(X), candy(X, strawberry).
+%fullname(X, weatherby) :- bought(X,Y), candy(Y, lemon), first(X), color(Y).
+%:- bought(elliot, orange).
+%:- bought(elliot, X), candy(X, orange), color(X).
+%fullname(X, williams) :- bought(X, yellow), first(X).
+%fullname(X, woods) :- bought(X,Y), candy(Y, strawberry), color(Y), first(X).
+%:- not bought(ryan, X), candy(X, raspberry), color(X).
+
+%candy(pink, orange).
+%:- candy(green, raspberry).
+%:- candy(blue, strawberry).
+
+%1{ fullname(X,Y) : first(X) }1 :- last(Y).
+%1{ fullname(X,Y) : last(Y) }1 :- first(X).
+%1{ candy(X,Y) : color(X) }1 :- flavor(Y).
+%1{ candy(X,Y) : flavor(Y) }1 :- color(X).
+%1{ bought(X,Y) : first(X) }1 :- color(Y).
+%1{ bought(X,Y) : color(Y) }1 :- first(X).
+
+%hide first(X).
+%hide last(X).
+%hide flavor(X).
+%hide color(X).
+
+%Unhide for answerset
+%hide candy(X,Y).
+%hide bought(X,Y).
+%hide fullname(X,Y).
+
+% ----Problem 2-----------------------------------
+
+first(frank; steven; michael; craig; walter).
+last(thompson; smith; stewart; williams; lewis).
+total(28..36).
+hi(264..288).
+
+1{ fullname(X,Y) : first(X) }1 :- last(Y).
+1{ fullname(X,Y) : last(Y) }1 :- first(X).
+1{ totalScore(X,Y) : first(X) }1 :- total(Y).
+1{ totalScore(X,Y) : total(Y) }1 :- first(X).
+1{ hiScore(X,Y) : first(X) }1 :- hi(Y).
+1{ hiScore(X,Y) : hi(Y) }1 :- first(X).
+
+:- not fullname(steven, lewis).
+:- fullname(frank, thompson).
+
+:- not hiScore(frank, 288). 
+:- totalScore(frank, 36).
+hiScore(X, Z+3):- first(X), totalScore(Y, 30), hiScore(Y, Z), fullname(X, smith), first(Y), hi(Z).
+fullname(X,Y) :- totalScore(X, 36), hiScore(X, Z),  Z mod 2 != 0, first(X), last(Y), hi(Z).
+fullname(michael, X) :- totalScore(michael, Y-6), totalScore(W, Y), fullname(W, williams), last(X), total(Y), first(W).
+fullname(X,Y) :- hiScore(X, 273), totalScore(Z, W-2), fullname(Z, smith), totalScore(craig, W+2), totalScore(X,W), first(X), last(Y), first(Z), total(W).
+fullname(X, thompson) :- totalScore(X, Y), totalScore(walter, W), totalScore(steven, Z), Y < W, Y > Z, first(X), total(Y), total(Z), total(W).
+
+hide first(X).
+hide total(X).
+hide hi(X).
+hide last(X).
+
+%Unhide for answer set
+%hide fullname(X,Y).
+%hide totalScore(X,Y).
+%hide hiScore(X,Y).
+
+% ----Problem 3-----------------------------------
+
+

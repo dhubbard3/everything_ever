@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="cd4a7f95-508b-43f0-abd5-1af6c722473f" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:54212/LINQMessagingSite/Message.svc?wsdl" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="Message.wsdl" MetadataType="Wsdl" ID="9a19744b-d718-4c22-89dc-92b7407c4812" SourceId="1" SourceUrl="http://localhost:54212/LINQMessagingSite/Message.svc?wsdl" />
+    <MetadataFile FileName="Message.xsd" MetadataType="Schema" ID="3608fd2a-71ab-434f-9d6d-4aa69dbc76b0" SourceId="1" SourceUrl="http://localhost:54212/LINQMessagingSite/Message.svc?xsd=xsd0" />
+    <MetadataFile FileName="Message1.xsd" MetadataType="Schema" ID="f9756b9b-0806-4f16-a877-99f7d3af53dc" SourceId="1" SourceUrl="http://localhost:54212/LINQMessagingSite/Message.svc?xsd=xsd1" />
+    <MetadataFile FileName="Message2.xsd" MetadataType="Schema" ID="262cb275-3aa5-4fb9-b41f-d52514a2135f" SourceId="1" SourceUrl="http://localhost:54212/LINQMessagingSite/Message.svc?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

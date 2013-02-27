@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="61c04393-6ea0-47e9-9640-acf2f96de9d6" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://webstrar8.fulton.asu.edu/page6/TravelInfo.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="Service1.wsdl" MetadataType="Wsdl" ID="fc6a9984-a382-4733-b0ec-8deea9853d4b" SourceId="1" SourceUrl="http://webstrar8.fulton.asu.edu/Page6/TravelInfo.svc?wsdl" />
+    <MetadataFile FileName="TravelInfo.disco" MetadataType="Disco" ID="1d3d1212-1f5e-445b-aad2-37c2bc7a79c0" SourceId="1" SourceUrl="http://webstrar8.fulton.asu.edu/Page6/TravelInfo.svc?disco" />
+    <MetadataFile FileName="TravelInfo.xsd" MetadataType="Schema" ID="e998f618-748a-40af-8f37-dfdd57c6f1bd" SourceId="1" SourceUrl="http://webstrar8.fulton.asu.edu/Page6/TravelInfo.svc?xsd=xsd0" />
+    <MetadataFile FileName="TravelInfo1.xsd" MetadataType="Schema" ID="8c8fea16-0961-4c6f-a847-048465fc2501" SourceId="1" SourceUrl="http://webstrar8.fulton.asu.edu/Page6/TravelInfo.svc?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

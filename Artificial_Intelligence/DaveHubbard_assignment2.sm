@@ -1,0 +1,45 @@
+%----Problem 1---------------------------------------------------------------------------------------
+
+agent(david;john;michael).
+nation(us;russia).
+
+working_for(david,us).
+working_for(john,us).
+working_for(john,russia).
+working_for(michael,russia).
+
+double_agent(X) :- working_for(X,Y), working_for(X,Z), Y != Z, nation(Y), nation(Z), agent(X).
+loyal(X) :- not double_agent(X), agent(X).
+trusted(X) :- loyal(X), agent(X).
+
+hide agent(X).
+hide nation(X).
+hide working_for(X,Y).
+
+
+%----Problem 2---------------------------------------------------------------------------------------
+
+author(david;michael;john).
+reviewer(greg;justin;jarred).
+
+wrote(david, paper1).
+wrote(david, paper2).
+wrote(john, paper2).
+wrote(michael, paper3).
+
+positive_review(greg,paper1).
+positive_review(jarred,paper1).
+positive_review(justin,paper2).
+positive_review(jarred,paper3).
+
+accept(X,Y) :- positive_review(Z,Y), positive_review(W,Y), W!=Z, wrote(X,Y), author(X), reviewer(W), reviewer(Z).
+reject(X,Y) :- not accept(X,Y), wrote(X,Y), author(X).
+
+hide author(X).
+hide reviewer(X).
+hide positive_review(X,Y).
+hide wrote(X,Y).
+hide wrote(X,Y).
+hide positive_review(X,Y).
+hide accept(X,Y).
+

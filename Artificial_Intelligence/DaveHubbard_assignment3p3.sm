@@ -1,0 +1,16 @@
+%A3 part 3
+
+shirt(1..16).
+row(1..4).
+col(1..4).
+year(1996..1999).
+type(band; senate; volleyball; french; art). 
+color(red; yellow; blue; green).
+
+:- not square(2, X, Y, red), year(X), type(Y). 
+:- not square(7, 1996, X, Y), year(X), type(Y).
+:- not square(12, X, Y, yellow), year(X), type(Y). 
+:- not square(16, 1996, X, Y), type(X), color(Y).
+
+:- square(W,X,Y,Z), square(A,B,C,D), shirt(X), year(X), type(Y), color(Z), W == A, X == B, Z == D.
+:- square(W,X,Y,Z), Y 

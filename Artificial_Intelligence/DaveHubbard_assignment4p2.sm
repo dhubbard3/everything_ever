@@ -1,0 +1,112 @@
+% Dave Hubbard - Assignment 4
+% CSE 471 - 10/05/2012
+
+%---- Problem 2--------------------------------
+
+row(1..3).
+col(1..3).
+square(1..9).
+color(rose; cream; peach; white; gray; pink; tan; mauve; lilac).
+outline(violet; black; brown; red; blue; green; yellow; orange; purple).
+type(habaneros; banana_pepper; chipotles; serranos; jalapenos; cayennes; green_chiles; red_devils; thai_dragons).
+
+1{background(X,Y) : square(X)} 1 :- color(Y).
+1{background(X,Y) : color(Y)} 1 :- square(X).
+1{border(X,Y) : square(X)} 1 :- outline(Y).
+1{border(X,Y) : outline(Y)} 1 :- square(X).
+1{pepper(X,Y) : square(X)} 1 :- type(Y).
+1{pepper(X,Y) : type(Y)} 1 :- square(X).
+%1{rPos(X,Y) : row(Y)}1 :- square(X).
+%1{cPos(X,Y) : col(Y)}1 :- square(X).
+
+poster(W,X,Y,Z) :- square(W), type(X), color(Y), outline(Z), background(W,Y), border(W,Z), pepper(W,X).
+
+left_of(X,Y) :- cPos(X,A), cPos(Y,B), A < B, square(X;Y), X!=Y, col(A;B).
+right_of(X,Y) :- cPos(X,A), cPos(Y,B), A > B, square(X;Y), X!=Y, col(A;B).
+above(X,Y) :- rPos(X,A), rPos(Y,B), A < B, square(X;Y), X!=Y, row(A;B).
+below(X,Y) :- rPos(X,A), rPos(Y,B), A > B, square(X;Y), X!=Y, row(A;B).
+between(X,Y,Z) :- sameRow(X,Y), sameRow(Y,Z), cPos(X,A), cPos(Y,B), cPos(Z,C), A < B, B < C, square(X;Y;Z), col(A;B;C).
+between(X,Y,Z) :- sameCol(X,Y), sameCol(Y,Z), rPos(X,A), rPos(Y,B), rPos(Z,C), A < B, B < C, square(X;Y;Z), row(A;B;C).
+next_to(X,Y) :- sameRow(X,Y), cPos(X,A), cPos(Y,B), A == B-1, square(X;Y), X!=Y, col(A;B).
+next_to(X,Y) :- sameRow(X,Y), cPos(X,A), cPos(Y,B), A == B+1, square(X;Y), X!=Y, col(A;B).
+next_to(X,Y) :- sameCol(X,Y), rPos(X,A), rPos(Y,B), A == B-1, square(X;Y), X!=Y, row(A;B).
+next_to(X,Y) :- sameCol(X,Y), rPos(X,A), rPos(Y,B), A == B+1, square(X;Y), X!=Y, row(A;B).
+sameRow(X,Y) :- rPos(X,A), rPos(Y,B), A == B, square(X;Y), row(A;B), X!=Y.
+sameCol(X,Y) :- cPos(X,A), cPos(Y,B), A == B, square(X;Y), col(A;B), X!=Y.
+corner(X,Y) :- not sameRow(X,Y), not sameCol(X,Y), X!=Y, rPos(X,A), cPos(X,B), 
+                      rPos(Y,C), cPos(Y,D), A-C == abs(1), B-D == abs(1), square(X;Y).
+
+% far_apart implies the two squares are in positions 1 & 9, or 3 & 7.
+far_apart(X,Y) :- rPos(X,1), cPos(X,1), rPos(Y,3), cPos(Y,3), square(X;Y), X!=Y.
+far_apart(X,Y) :- rPos(X,3), cPos(X,3), rPos(Y,1), cPos(Y,1), square(X;Y), X!=Y.
+far_apart(X,Y) :- rPos(X,1), cPos(X,3), rPos(Y,3), cPos(Y,1), square(X;Y), X!=Y.
+far_apart(X,Y) :- rPos(X,3), cPos(X,1), rPos(Y,1), cPos(Y,3), square(X;Y), X!=Y.
+
+%1.
+:- pepper(X ,habaneros), background(Y, cream), not left_of(X,Y), square(X;Y).
+:- pepper(X, habaneros), border(Y, black), next_to(X,Y), square(X;Y), row(A;B).
+
+%2.
+:- pepper(X, banana_pepper), border(Y, brown), not above(X,Y), square(X;Y).
+:- pepper(X, red_devils), background(Y, peach), not above(X,Y), square(X;Y).
+:- pepper(X, chipotles), background(X,peach), square(X).
+:- border(X,red), pepper(Y, serranos), not below(X,Y), square(X;Y).
+:- pepper(Y,jalapenos), pepper(X, serranos), next_to(X,Y), square(X;Y).
+
+%3.
+:- border(X, orange), background(Y, white), not corner(X,Y), square(X;Y).
+
+%4.
+:- peppers(X,jalapenos), background(Y, gray), border(Z, blue), not between(Y,X,Z), square(X;Y;Z).
+:- background(X,pink), border(Y, green), not right_of(X,Y), square(X;Y).
+:- border(X,green), background(X, tan), square(X).
+:- pepper(X, banana_pepper), background(X, gray), square(X).
+
+%5.
+:- background(X,cream), border(Y, black), not far_apart(X,Y), square(X;Y).
+
+%6.
+:- background(X,mauve), pepper(Y, cayennes), pepper(Z, chipotles), not between(Y,X,Z), square(X;Y;Z).
+:- border(X, yellow), background(X, mauve), square(X).
+
+%7.
+:- border(X, purple), border(Y, red), not left_of(X,Y), square(X;Y).
+:- border(X, purple), border(Y, red), next_to(X,Y), square(X;Y).
+:- background(X, pink), border(Y, orange), not above(X,Y), square(X;Y).
+
+%8.
+:- border(X, blue), pepper(Y, habaneros), not above(X,Y), square(X;Y).
+:- border(Y, black), background(X,gray), not above(X,Y), square(X;Y).
+
+%9
+:- pepper(X, banana_pepper), pepper(Y, cayennes), not below(X,Y), square(X;Y).
+:- pepper(X, serranos), border(Y, blue), not right_of(X,Y), square(X;Y).
+
+%10
+:- pepper(X, green_chiles), background(Y, white), not left_of(X,Y), square(X;Y).
+:- background(Y, lilac), border(X, brown), not left_of(X,Y), square(X;Y).
+:- background(Y, lilac), border(X, brown), not next_to(X,Y), square(X;Y).
+
+hide.
+show poster(W,X,Y,Z).
+
+%grid positions
+rPos(1, 1).
+cPos(1, 1).
+rPos(2, 1).
+cPos(2, 2).
+rPos(3, 1).
+cPos(3, 3).
+rPos(4, 2).
+cPos(4, 1).
+rPos(5, 2).
+cPos(5, 2).
+rPos(6, 2).
+cPos(6, 3).
+rPos(7, 3).
+cPos(7, 1).
+rPos(8, 3).
+cPos(8, 2).
+rPos(9, 3).
+cPos(9, 3).
+

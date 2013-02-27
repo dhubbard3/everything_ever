@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<publishData>
+  <publishProfile publishUrl="C:\Users\Dave\Educate!\CSE 445 - Distributed Software Development\Published Pages_Services\WsOperations" deleteExistingFiles="False" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="False" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="False" profileName="Profile1" publishMethod="FileSystem" replaceMatchingFiles="True" userName="" savePWD="False" userPWD="" SelectedForPublish="True">
+    <file relUrl="bin/WsOperations.dll" publishTime="03/11/2012 18:54:06" />
+    <file relUrl="WSOps.svc" publishTime="03/11/2012 18:53:48" />
+    <file relUrl="bin/WsOperations.pdb" publishTime="03/11/2012 18:54:06" />
+    <file relUrl="Web.config" publishTime="03/11/2012 18:52:53" />
+  </publishProfile>
+</publishData>

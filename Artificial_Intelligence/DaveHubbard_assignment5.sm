@@ -1,0 +1,123 @@
+% Dave Hubbard - Assignment 5
+% CSE 471 - 10/9/2012
+
+% ------- Problem 1 -------%
+
+% --Fluents--
+% ontable(X) -- meaning X is on table
+% picked(X) - robot hand is carrying block X.
+% on(X,Y) -- meaning X is on top of Y.
+% clear(X) -- meaning that there is nothing on top of X.
+% handempty - robot hand is not carrying a block.
+
+% --Actions--
+% putdown(X,Y)  - put block X on top of block Y.
+% putontable(X)  -- move block X to the table.
+% pickup(X) - pick up block X if clear.
+
+% --Actions for Goal--
+%  pickup(b), putontable(b), pickup(d), putontable(d), pickup(c), putdown(c,b), pickup(a), putdown(a,b), pickup(d), putdown(d,a). 
+% (10 steps)
+
+
+block(a;b;c;d).
+time(0..10).
+
+fluent(handempty).
+fluent(clear(X)) :- block(X).
+fluent(ontable(X)) :- block(X).
+fluent(picked(X)) :- block(X).
+fluent(on(X,Y)) :- block(X), block(Y), X!=Y.
+
+action(pickup(X)) :- block(X).
+action(putontable(X)) :- block(X).
+action(putdown(X,Y)) :- block(X), block(Y), X!=Y.
+
+%---------------------------------------------------------------------------------------------------------------------------------------------------- pickup(X) --%
+
+% executable pickup(X)  if clear(X) and handempty.
+exec(pickup(X), T) :- holds(clear(X),T), holds(handempty, T), nholds(picked(Y),T), time(T), block(X;Y), X!=Y.
+
+% pickup(X) causes not handempty, picked(X).
+nholds(handempty, T+1) :- occurs(pickup(X),T), block(X), time(T).
+holds(picked(X), T+1) :- occurs(pickup(X),T), block(X), time(T).
+
+% pickup(X) causes clear(Y), ~on(X,Y) if on(X,Y).
+holds(clear(Y), T+1) :- occurs(pickup(X),T), block(X), block(Y),  holds(on(X,Y),T), time(T), X!=Y.
+nholds(on(X,Y), T+1) :- occurs(pickup(X),T), block(X), block(Y), holds(on(X,Y),T), time(T), X!=Y.
+
+% pickup(X) causes ~ontable(X) if ontable(X).
+nholds(ontable(X), T+1) :- occurs(pickup(X),T), block(X), holds(ontable(X),T), time(T).
+
+%---------------------------------------------------------------------------------------------------------------------------------------------- putontable(X) --%
+
+% executable putontable(X) if picked(X),~handempty, ~ontable(X).
+exec(putontable(X),T) :- holds(picked(X), T), nholds(handempty, T), nholds(ontable(X), T), block(X), time(T).
+
+% putontable(X) causes ontable(X) and handempty and ~picked(X).
+holds(ontable(X), T+1) :- occurs(putontable(X),T), block(X), time(T).
+holds(handempty, T+1) :- occurs(putontable(X),T), block(X), time(T).
+nholds(picked(X), T+1) :- occurs(putontable(X,Y),T),  holds(picked(X),T), block(Y), block(X), time(T).
+
+% putontable(X) causes clear(Y), ~on(X,Y) if on(X,Y).
+holds(clear(Y), T+1) :- occurs(putontable(X),T),  holds(on(X,Y),T), block(Y), block(X), time(T).
+nholds(on(X,Y), T+1) :- occurs(putontable(X),T),  holds(on(X,Y),T), block(Y), block(X), time(T).
+
+%------------------------------------------------------------------------------------------------------------------------------------------------- putdown(X) --%
+
+% executable putdown(X,Y) if picked(X), ~handempty, clear(Y).
+exec(putdown(X,Y), T) :- holds(picked(X), T), nholds(handempty,T), holds(clear(Y),T) , block(X), block(Y), time(T).
+
+% putdown(X,Y) causes ~clear(Y), on(X,Y).
+nholds(clear(Y), T+1) :- occurs(putdown(X,Y),T),  holds(clear(Y),T), block(Y), block(X), time(T).
+holds(on(X,Y), T+1) :- occurs(putdown(X,Y),T),  holds(clear(Y),T), block(Y), block(X), time(T).
+
+% putdown(X,Y) causes handempty and ~picked(X).
+holds(handempty, T+1) :- occurs(putdown(X,Y),T),  nholds(handempty,T), block(Y), block(X), time(T).
+nholds(picked(X), T+1) :- occurs(putdown(X,Y),T),  holds(picked(X),T), block(Y), block(X), time(T).
+
+%----------------------------------------------------------------------------------------------------------------------------------------------------------------------%
+
+holds(F, T+1) :- fluent(F), holds(F,T), not nholds(F, T+1), time(T).
+nholds(F, T+1) :- fluent(F), nholds(F,T), not holds(F, T+1), time(T).
+
+occurs(A,T) :- action(A), time(T), not otheroccurs(A,T), exec(A,T).
+otheroccurs(A,T) :- occurs(B,T), exec(A,T), A!=B, action(A), action(B), time(T).
+
+holds(F,0) :- fluent(F), initially(F).
+nholds(F,0) :- fluent(F), not holds(F,0).
+
+%------------------------------------------------------------------------------------------------------------------------------------------------- Initial State --%   
+
+initially(ontable(a)).
+initially(ontable(c)).
+initially(on(b,a)).
+initially(on(d,c)).
+initially(clear(b)).
+initially(clear(d)).
+initially(handempty).
+
+%------------------------------------------------------------------------------------------------------------------------------------------------------------ Goal --%   
+
+goal_met :- holds(ontable(b),X), holds(on(c,b),X), holds(on(a,c),X), holds(on(d,a),X), holds(clear(d),X), X=10.
+:- not goal_met.
+
+
+hide.
+show occurs(X,Y).
+%show holds(X,Y).
+
+
+%test----------------------------------
+
+%occurs(pickup(b),0).
+%occurs(putontable(b),1).
+%occurs(pickup(d),2).
+%occurs(putontable(d),3).
+%occurs(pickup(c), 4).
+%occurs(putdown(c,b), 5).
+%occurs(pickup(a), 6).
+%occurs(putdown(a,c), 7).
+%occurs(pickup(d), 8).
+%occurs(putdown(d,a),9).
+

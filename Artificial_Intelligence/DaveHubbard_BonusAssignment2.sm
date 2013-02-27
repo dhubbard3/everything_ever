@@ -1,0 +1,59 @@
+% Dave Hubbard - Bonus Assignment 2
+% CSE 471 - 10/11/2012
+
+cindex(1..3).
+rindex(1..3).
+col(1,muppet).
+col(2,park).
+col(3,ride).
+
+%col1: has three kinds of muppets
+
+element(1,kermit).
+element(1,piggy).
+element(1,fozzie).
+
+element(2,disney).
+element(2,marine).
+element(2,magic).
+
+element(3,bike).
+element(3,car).
+element(3,bus).
+
+%row(i,n) means that we have the element n in row i
+
+%Kermit went to Disneyland. :- not went(kermit,disneyland).
+:- rindex(I), rindex(J), row(I,kermit), row(J,disney), I!=J.
+
+%Fozzie bear did not use a bus. :- ride(fozzie,bus).
+:- rindex(I), row(I,fozzie), row(I,bus).
+
+%muppet who went to marine world used a bike.
+:- rindex(I), rindex(J), row(I,marine), row(J,bike), I!=J.
+
+%miss piggy went in a car.
+:- rindex(I), rindex(J), row(I,piggy), row(J,car), I!=J.
+
+row(1,kermit).
+row(2,piggy).
+row(3,fozzie).
+
+% 1{row(X,Y) : element(Z,Y)}1 :- rindex(X), cindex(Z).
+% It should be generalized.
+% Like this
+
+1{row(X,Y),nrow(X,Y)}1 :- rindex(X), cindex(K), element(K,Y).
+
+% Same row cannot have two different elements from the same column.
+:- rindex(I), row(I,X), row(I,Y), X!=Y, cindex(C), element(C,Y), element(C,X).
+
+% Two different rows cannot have the same element.
+:- rindex(I), rindex(J), row(I,X), row(J,Y), X=Y, I!=J,  cindex(C), element(C,X), element(C,Y).
+
+% Each row should have at least one element from each column.
+1{row(X,Y) : element(C,Y)}1 :- rindex(X), cindex(C).
+
+hide.
+show row(A,B).
+

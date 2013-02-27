@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://tempuri.org/XMLSchema.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/XMLSchema.xsd"
+    xmlns:mstns="http://tempuri.org/XMLSchema.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+  <xs:element name ="Course">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Code" type="xs:string" minOccurs="1" maxOccurs="unbounded"/>
+        <xs:element name="Name" type="xs:string" minOccurs="1" maxOccurs="unbounded"/>
+        <xs:element name="Instructor" type="xs:string" minOccurs="1" maxOccurs="unbounded"/>
+        <xs:element name="Name" type="xs:string" minOccurs="1" maxOccurs="unbounded"/>
+        <xs:element name="First" type="xs:string" minOccurs="1" maxOccurs="unbounded"/>
+        <xs:element name="Last" type="xs:string" minOccurs="1" maxOccurs="unbounded"/>
+        <xs:element name="Contact" type="xs:string" minOccurs="1" maxOccurs="unbounded"/>
+        <xs:element name="Phone" type="xs:string" minOccurs="1" maxOccurs="unbounded"/>
+        <xs:element name="Room" type="xs:string" minOccurs="1" maxOccurs="unbounded"/>
+        <xs:element name="Cap" type="xs:integer" minOccurs="1" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="Grad" type="xs:string" use="required"/>
+      <xs:attribute name="Undergrad" type="xs:string" use="required"/>
+      <xs:attribute name="Office" type="xs:string" use="required"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
