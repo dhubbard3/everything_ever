@@ -1,0 +1,30 @@
+// CSE 240 Assignment 4 (Critters)
+// Name: Dave Hubbard
+
+#ifndef SUNDEVIL_H
+#define SUNDEVIL_H
+
+#include "Critter.h"
+
+// Write your class declaration for your SunDevil class here.
+class SunDevil : public Critter{
+
+public:
+    SunDevil(){}
+    virtual ~SunDevil(){}
+
+    virtual Attack fight(char);
+    virtual Direction getMove();
+    virtual char getChar();
+
+};
+
+/* You can do anything you like for your Sun-Devil critter.  There are
+   additional methods in the Critter class that you might find fun or
+   useful while you're writting your Sun Devil.  Your Sun Devil does
+   not need to win every fight, or be awesome (although real Sun
+   Devils ARE awesome) -- but be a little creative and write a Sun
+   Devil that you enjoy! */
+
+// Don't forget the semicolon at the end of your class declaration!
+#endif

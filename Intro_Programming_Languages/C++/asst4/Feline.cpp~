@@ -1,0 +1,16 @@
+// CSE 240 Assignment 4 (Critters)
+// Name:
+
+#include "Feline.h"
+
+// Write your definition for the methods in your Bear class here,
+// except for any methods that you wrote inlined into the class
+// declaration.
+Attack Feline::fight(char opponent){
+    return POUNCE;
+}
+
+Direction Feline::getMove(){
+    return randomDirection();
+}
+

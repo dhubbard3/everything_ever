@@ -1,0 +1,388 @@
+/*
+CSE 240 Assignment 2
+Connect Four
+Dave Hubbard
+dehubbar@asu.edu
+
+This program plays a game of Connect Four. Two players take turns dropping
+pieces into their column of choice until one player lines four pieces in a
+row.
+ */
+
+#include "Connect4.h"
+
+
+/***********************************************************************/
+/*  Global Data */
+/***********************************************************************/
+
+/* The Connect4 Game Board */
+static Connect4_Column_t board[NUM_COLS];
+
+/***********************************************************************/
+/* Board Management */
+/***********************************************************************/
+
+/* Determine if dropping a piece in the given column is possible.
+   Returns:
+   - true if move is valid,
+   - false otherwise
+*/
+Bool isValidMove(int colNum) {
+    if(board[colNum].numPieces > COL_HEIGHT-1){
+	return FALSE;
+    }
+  return TRUE;
+}
+
+/* Update the board to reflect the given piece dropped in the
+   given column.
+*/
+void makeMove(int toPlace, Connect4Space_t piece) {
+    int i = board[toPlace].numPieces;
+    board[toPlace].pieces[i] = piece;
+    board[toPlace].numPieces++;
+}
+
+/* Check if the board lacks any more open spaces to drop into.
+   Returns:
+   - true if the board has no more open spaces
+   - false otherwise
+*/
+Bool boardFull() {
+  int c;
+  /* check each column to see if it is full */
+  for(c = 0; c < NUM_COLS; c++) {
+    if(board[c].numPieces < COL_HEIGHT) {
+      /* we can stop when we see a short column */
+      return FALSE;
+    }
+  }
+  /* no short columns means the board is full*/
+  return TRUE;
+}
+
+/* Initializes the board to empty spaces */
+void clearBoard() {
+  int c, r;
+
+  for(c = 0; c < NUM_COLS; c++) {
+    board[c].numPieces = 0;
+    for(r = 0; r < COL_HEIGHT; r++) {
+      board[c].pieces[r] = Empty;
+    }
+  }
+}
+
+
+/***********************************************************************/
+/* Input/Output */
+/***********************************************************************/
+
+/* Prompt the player and collect the column that they would like to drop
+   a piece into.
+   Returns the column number that the user would like to play in.
+*/
+int getMove(Bool isMaroonTurn) {
+  static int numTurns = 0;
+
+  int scanRetVal;
+
+  do {
+    int moveColumn = -1;
+    
+    printBoard();
+    
+    printf("%s, it is turn %d of the game.\n"
+	   "Into what column would you like to drop a piece? (0 to 6): ",
+	   isMaroonTurn ? "Maroon" : "Gold",
+	   numTurns);
+    
+    /* Read an integer from the player. */
+    scanRetVal = scanf("%d", &moveColumn);
+
+    /* Check to see if the scanf worked.  If it didn't, we're going to
+       shut down for now, to stop this program from infinite looping
+       when we're using a test input file. */
+    if(scanRetVal != 1) { /* we expected to see one number read */
+      printf("\nInvalid input, perhaps you reached the end of your test "
+	     "input file?  Shutting down.\n");
+      /* not the most graceful program, but we're just getting started!*/
+      exit(-1);
+    }
+    
+    if(isValidMove(moveColumn)) {
+      numTurns++;
+      return moveColumn;
+    } else {
+      printf("I'm sorry, you cannot drop into that column.\n");
+    }
+  } while(TRUE); 
+}
+
+
+/* Prints the board for the user to see.  See the assignment writeup
+for sample output of this function.  Your implementation should match
+ours exactly. */
+void printBoard() {
+    int i,j;
+    char p;
+    for(i = COL_HEIGHT; i > 0; i--){
+	printf("\n%d | ", i-1);
+	for(j = 0; j < NUM_COLS; j++){
+	    if(board[j].pieces[i-1] == Empty){
+		p = 'O';
+	    }
+	    if(board[j].pieces[i-1] == Maroon){
+		p = 'M';
+	    } 
+	    if(board[j].pieces[i-1] == Gold) {
+		p = 'G';
+	    }
+	    printf("%c ", p);
+        }
+    }
+    printf("\n   --------------\n");
+    printf("    0 1 2 3 4 5 6\n");
+}
+
+
+/***********************************************************************/
+/* Checking for a win */
+/***********************************************************************/
+
+/* Check for a win by four in-a-row vertically in a column.
+   Returns:
+   - MaroonWins if there is four in-a-column for maroon.
+   - GoldWins if there is four in-a-column for gold.
+   - None if there is neither
+   - (this function never returns Draw)
+*/
+static Connect4Winner_t getVerticalWin() { 
+    int i,j,maroon,gold;
+   
+ /* Only checks columns with 4 or more pieces for a win */
+    for(i = 0; i < NUM_COLS; i++){
+	maroon = 0;
+	gold = 0;
+	if(board[i].numPieces >= WINNING_SEQUENCE_LENGTH){
+	    for(j = 0; j < COL_HEIGHT; j++){
+		if(board[i].pieces[j] == Maroon){
+		    gold = 0;
+		    maroon++;
+		    if(maroon == WINNING_SEQUENCE_LENGTH){
+			return MaroonWins;}
+		}
+		if(board[i].pieces[j] == Gold){
+		    maroon = 0;
+		    gold++;
+		    if(gold == WINNING_SEQUENCE_LENGTH){
+			return GoldWins;}
+		}
+	    }
+	}
+    }
+	    
+  return None;
+}
+
+/* Check for a win by four in-a-row horizontally.
+   Returns:
+   - MaroonWins if there is four in-a-row for maroon.
+   - GoldWins if there is four in-a-row for gold.
+   - None if there is neither
+   - (this function never returns Draw)
+*/
+static Connect4Winner_t getHorizontalWin() { 
+    int i,j,maroon,gold;
+    /* Checks for a sequence of four like pieces in each row */
+    for(i = 0; i < COL_HEIGHT; i++){
+	gold = 0;
+	maroon = 0;
+	for(j = 0; j < NUM_COLS; j++){
+	    if(board[j].pieces[i] == Maroon){
+		gold = 0;
+		maroon++;
+		if(maroon == WINNING_SEQUENCE_LENGTH){
+		    return MaroonWins;
+		}
+	    }
+	    if(board[j].pieces[i] == Gold){
+		maroon = 0;
+		gold++;
+		if(gold == WINNING_SEQUENCE_LENGTH){
+		    return GoldWins;
+		}
+	    }
+	}
+    }
+
+  return None;
+}
+
+/* Check for a win by four in-a-row diagonally.
+   Returns:
+   - MaroonWins if there is four in-a-diagonal for maroon.
+   - GoldWins if there is four in-a-diagonal for gold.
+   - None if there is neither
+   - (this function never returns Draw)
+*/
+static Connect4Winner_t getDiagonalWin() {
+    int i,row,col,count,numOfSpaces,maroon,gold;
+
+    /* Check for all six positive diagonal win situations */
+    col = 0;
+    row = 2; /* start checking from (0,2) */
+    numOfSpaces = WINNING_SEQUENCE_LENGTH;
+    for(i=0;i<COL_HEIGHT;i++){
+	for(count=0;count<numOfSpaces;count++){
+	    switch(board[col].pieces[row]){
+	    case Maroon:  gold = 0;
+		          maroon++;
+		          if(maroon==WINNING_SEQUENCE_LENGTH){
+		             return MaroonWins;}
+		          break;
+	    case Gold: 	  maroon = 0;
+		          gold++;
+			  if(gold==WINNING_SEQUENCE_LENGTH){
+			      return GoldWins;}
+			  break;
+	    case Empty:   break;
+	    }
+	    col++;
+	    row++;
+	}
+	maroon = 0;
+	gold = 0;
+	/* Sets up the row, column, and size of the next winning condition */
+	switch(i){
+	case 0: col = 0; row = 1; numOfSpaces = 5; break;
+	case 1: col = 0; row = 0; numOfSpaces = 6; break;
+	case 2: col = 1; row = 0; numOfSpaces = 6; break;
+	case 3: col = 2; row = 0; numOfSpaces = 5; break;
+	case 4: col = 3; row = 0; numOfSpaces = 4; break;
+	default: break;
+	}
+    }	 
+    /* Checks for all six negative diagonal wins situations */
+    col = 0;
+    row = 3; /* start checking from (0,3) */
+    numOfSpaces = WINNING_SEQUENCE_LENGTH;
+    for(i=0;i<COL_HEIGHT;i++){
+	for(count=0;count<numOfSpaces;count++){
+	    switch(board[col].pieces[row]){
+	    case Maroon:  gold = 0;
+		          maroon++;
+		          if(maroon==WINNING_SEQUENCE_LENGTH){
+		             return MaroonWins;}
+		          break;
+	    case Gold: 	  maroon = 0;
+		          gold++;
+			  if(gold==WINNING_SEQUENCE_LENGTH){
+			      return GoldWins;}
+			  break;
+	    case Empty:   break;
+	    }
+	    col++;
+	    row--;
+	}
+	maroon = 0;
+	gold = 0;
+	/* Sets up the row, column, and size of the next winning condition */
+	switch(i){
+	case 0: col = 0; row = 4; numOfSpaces = 5; break;
+	case 1: col = 0; row = 5; numOfSpaces = 6; break;
+	case 2: col = 1; row = 5; numOfSpaces = 6; break;
+	case 3: col = 2; row = 5; numOfSpaces = 5; break;
+	case 4: col = 3; row = 5; numOfSpaces = 4; break;
+	default: break;
+	}
+    }
+  	
+  return None;
+}
+
+/* Check for a win on the game board, either by row, column, or diagonal.
+   Returns:
+   - MaroonWins if there is a win for maroon.
+   - GoldWins if there is a win for gold.
+   - None if there is neither
+   - Draw if there is neither and the game board is full.
+*/
+Connect4Winner_t getWinner() {
+  Connect4Winner_t winner = getVerticalWin();
+  if(winner != None && winner != Draw) {
+    return winner;
+  }
+
+  winner = getHorizontalWin();
+  if(winner != None && winner != Draw) {
+    return winner;
+  }
+
+  winner = getDiagonalWin();
+  if(winner != None && winner != Draw) {
+    return winner;
+  }
+
+  /* if we get this far, then we need to check if there is a draw */
+  if(boardFull()) {
+    return Draw;
+  }
+
+  /* otherwise, there is no winner yet */
+  return None;
+}
+
+/***********************************************************************/
+/* Game driver - makes the game actually go. */
+/***********************************************************************/
+
+void playGame() {
+  Connect4Winner_t winner = getWinner();
+  Bool maroonTurn = TRUE;
+
+  while(winner == None) {
+    /* get the move from the player */
+    int toPlace = getMove(maroonTurn);
+    
+    /* place the move into the board */
+    makeMove(toPlace, maroonTurn ? Maroon : Gold);
+
+    /* check for a win */
+    winner = getWinner();
+
+    /* switch to the other player */
+    maroonTurn = !maroonTurn;
+
+    /* rinse, repeat */
+  }
+
+  printBoard();
+
+  switch(winner) {
+  case Draw:
+    printf("Wow, it was a tie!  Good job!\n");
+    break;
+  case MaroonWins:
+    printf("Maroon won, go Maroon!\n");
+    break;
+  case GoldWins:
+    printf("Gold won, go Gold!\n");
+    break;
+  default: /* None shouldn't happen */
+    printf("This is unpossible! How can there not be a winner?\n");
+    break;
+  }
+
+  printf("Thanks for playing! Goodbye!\n");  
+}
+
+int main(void) {
+  /* initialize the board to empty spaces */
+  clearBoard();
+
+  playGame();
+
+  return 0;
+}

@@ -1,0 +1,23 @@
+Name: Dave Hubbard
+Email: dehubbar@asu.edu
+
+Please write your testcases for your linked list below:
+-------------------------------------------------------
+Insert a node into an empty list.
+Insert a node before a list with a single node.
+Insert a node before a value in the middle of the list.
+*Insert a node after the tail of the list.
+Insert a node after a value in the middle of the list.
+*Traverse the list forward and back.
+*Jump to the head.
+*Jump to the tail.
+Create 2 different lists and enter values before and after an element midway.
+*Look for a specific value in the list from an element before the value.
+Look for a specific value from an element after.
+*Remove an element at the head.
+*Remove an element at the tail.
+*Remove an element in between.
+Remove an element for a single node list.
+*Delete the entire list from the head.
+*Delete only the tail.
+Delete the list from various elements near the head and tail.

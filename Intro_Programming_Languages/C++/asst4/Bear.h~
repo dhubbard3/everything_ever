@@ -1,0 +1,16 @@
+// CSE 240 Assignment 4 (Critters)
+// Name:
+
+#ifndef BEAR_H
+#define BEAR_H
+
+#include "Critter.h"
+
+// Write your class declaration for your Bear class here.
+
+/* Your constructor and destructor will be VERY simple, so you may
+   just want to write the constructor and destructor inline right into
+   your class declaration. */
+
+// Don't forget the semicolon at the end of your class declaration!
+#endif

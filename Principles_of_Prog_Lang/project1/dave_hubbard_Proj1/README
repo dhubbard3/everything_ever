@@ -1,0 +1,14 @@
+Dave Hubbard
+CSE 340
+10/11/11
+Project 1
+
+	A makefile is included, so just type 'make' to create the file 'proj1'.
+	To run, type:
+		
+		./proj1 <test case>
+	
+	where <test case> is the name of the input file.
+	
+	
+	

@@ -1,0 +1,25 @@
+   (23) stmt              -> while_stmt
+   (24) stmt              -> assign_stmt
+   (25) while_stmt        -> WHILE condition body
+   (26) assign_stmt       -> ID EQUAL expr SEMICOLON
+   (27) expr              -> term PLUS expr
+   (28) expr              -> term MINUS expr
+   (29) expr              -> term
+   (30) term              -> factor MULT term
+   (31) term              -> factor DIV term
+   (32) term              -> factor
+   (33) factor            -> LPAREN expr RPAREN
+   (34) factor            -> NUM
+   (35) factor            -> REALNUM
+   (36) factor			  -> ID
+   (37) condition         -> ID                          
+   (38) condition         -> primary relop primary
+   (39) primary           -> ID
+   (40) primary           -> NUM
+   (41) primary           -> REALNUM
+   (42) relop             -> GREATER
+   (43) relop             -> GTEQ
+   (44) relop             -> LESS
+   (45) relop             -> NOTEQUAL
+   (46) relop             -> LTEQ
+

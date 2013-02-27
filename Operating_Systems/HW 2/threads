@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include <malloc.h>
+#include <pthread.h>
+#include <math.h>
+
+#define N 512
+#define TT 16
+#define SLEEP 5
+
+void *doyourpart(void *param);
+
+int main()
+{
+        int i;
+        int j;
+
+        int parts[TT];
+        pthread_t tid[TT];
+        pthread_attr_t pt_attribs;
+
+        for (i=0; i<TT; i++)
+        {
+                parts[i] = i;
+                pthread_attr_init(&pt_attribs);
+                pthread_create(&(tid[i]), &pt_attribs, doyourpart, &(parts[i]));
+        }
+
+        if (SLEEP == 1) sleep(30);
+
+        for (i=0; i<TT; i++)
+                pthread_join(tid[i], NULL);
+
+        return 0;
+}
+
+
+void *doyourpart(void *param)
+{
+        int part = *(int *)param;
+        printf("Thread %d\n",part);
+        pthread_exit(0);
+}

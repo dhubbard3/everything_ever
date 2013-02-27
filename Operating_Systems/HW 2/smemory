@@ -1,0 +1,103 @@
+#include <sys/shm.h>
+#include <sys/wait.h>
+#include <malloc.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <errno.h>
+#include <error.h>
+
+#define N 10
+
+typedef struct matrixstruct {
+        int C[N][N];
+        } matstr;
+
+matstr *Cms; /* pointer to output matrix C */
+int Cid;     /* segment id for output matrix C */
+int base_pid;
+
+int main()
+{
+    int i;
+
+    /*
+    *
+    * STEP 1: create the shared segment
+    */
+    if ((Cid = shmget(IPC_PRIVATE, sizeof(matstr), IPC_CREAT | 0666)) < 0)
+    {
+        perror("smget returned -1\n");
+        error(-1, errno, " ");
+        exit(-1);
+    }
+    printf("Allocated %d, at id %d\n", (int) sizeof(matstr), Cid);
+
+ 
+    /*
+    *
+    * STEP 2: fork the children processes
+    */
+    base_pid = getpid();
+    for(i=1; i<N; i++) {
+        if (getpid()==base_pid)
+            fork();
+        else
+            break;
+    }
+
+
+    /*
+    *
+    * STEP 3: each child process attaches the segment
+    */
+    if ((Cms = (matstr *) shmat(Cid, NULL, 0)) == (matstr *) -1){
+        perror("Process shmat returned NULL\n");
+        error(-1, errno, " ");
+    }
+    else
+        printf("Process %d attached the segment %d\n", getpid(), Cid);
+
+    /*
+    *
+    *
+    *
+    * STEP 4: use the shared segment
+    *
+    *
+    *
+    */
+    Cms->C[0][0] = 1;
+
+    /*
+    *
+    * STEP 5: each child process detaches the segment
+    */
+    if (shmdt(Cms) == -1){
+        perror("shmdt returned -1\n");
+        error(-1, errno, " ");
+    }else
+        printf("Process %d detached the segment %d\n", getpid(), Cid);
+
+    /*
+    *
+    * STEP 6: each child process exits and the parent joins
+    */
+    if (getpid()==base_pid)
+        for(i=1; i<N; i++) {
+            wait(NULL);
+        }
+    else
+        exit(0);
+
+
+    /*
+    *
+    * STEP 7: base process deletes the segment
+    */
+    if (shmctl(Cid,IPC_RMID,NULL) == -1){
+        perror("shmctl returned -1\n");
+        error(-1, errno, " ");
+    }
+ 
+    return 0;
+}

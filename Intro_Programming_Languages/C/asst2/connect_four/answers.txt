@@ -1,0 +1,29 @@
+Dave Hubbard
+CSE240 Assignment 2
+
+1) What does static mean for function-local variables?
+  
+   [Static variables are kept in memory even when the function ends. Upon
+    calling the function again, the variable will remain intact.]
+
+
+2) What does static mean for functions and global variables?
+
+   [Static functions and global variables can be read by any other functions
+    in the file, but only if they are part of the same file (functions are
+    localized).]
+
+3) Where is the second dimension of our Connect Four game board?
+   
+   [Included in the type definition for Connect4_Column_t, there is an array
+    of variables for the pieces dropped into the board. This is the second
+    dimension.]
+
+4) What are the possible values of Bool by our definition?
+
+  [ The value 1 indicates True, and the value 0 indicates False.]
+
+What do the other values not defined as constants mean if used as the
+predicate expression in an if statement?
+
+  [ They seem to default to true. I'm not entirely sure.]

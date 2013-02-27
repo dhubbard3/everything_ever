@@ -1,0 +1,24 @@
+// CSE 240 Assignment 4 (Critters)
+// Name
+
+#include "Tiger.h"
+
+// Write your definition for the methods in your Tiger class here,
+// except for any methods that you wrote inlined into the class
+// declaration.
+
+int moveTurn = 1;
+Direction currentDir = (Direction) (rand() % 4);
+
+Direction Tiger::getMove(){
+    if(moveTurn > 3){
+	currentDir = (Direction) (rand() % 4);
+	moveTurn = 1;
+    }
+    return currentDir;
+}
+
+char Tiger::getChar(){
+    return 'T';
+}
+    
