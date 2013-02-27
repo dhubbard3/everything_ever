@@ -1,0 +1,84 @@
+Choice		Action
+------		------
+E		Enter Maze Information
+Q		Quit
+?		Display Help
+
+What action would you like to perform?
+Please enter the maze information
+Trying the position of row 0 and column 9
+Row: 1 Column: 9
+Row: 1 Column: 8
+Trying the position of row 1 and column 8
+Row: 2 Column: 8
+Row: 2 Column: 7
+Trying the position of row 2 and column 7
+Row: 3 Column: 7
+Trying the position of row 3 and column 7
+Row: 4 Column: 7
+Trying the position of row 4 and column 7
+Row: 5 Column: 7
+Row: 5 Column: 6
+Row: 4 Column: 6
+Trying the position of row 4 and column 6
+Row: 5 Column: 6
+Row: 5 Column: 5
+Trying the position of row 5 and column 5
+Row: 6 Column: 5
+Row: 6 Column: 4
+Row: 5 Column: 4
+Row: 4 Column: 4
+Trying the position of row 4 and column 4
+Row: 5 Column: 4
+Row: 5 Column: 3
+Trying the position of row 5 and column 3
+Row: 6 Column: 3
+Trying the position of row 6 and column 3
+Row: 7 Column: 3
+Trying the position of row 7 and column 3
+Row: 8 Column: 3
+Trying the position of row 8 and column 3
+Row: 9 Column: 3
+Row: 9 Column: 2
+Trying the position of row 9 and column 2
+Row: 10 Column: 2
+Row: 10 Column: 1
+Row: 9 Column: 1
+Trying the position of row 9 and column 1
+Row: 10 Column: 1
+Row: 10 Column: 0
+Row: 9 Column: 0
+
+solution found
+
+Solution Path:
+From row 0, col 9, go to DownLeft
+From row 1, col 8, go to DownLeft
+From row 2, col 7, go to Down
+From row 3, col 7, go to Down
+From row 4, col 7, go to Left
+From row 4, col 6, go to DownLeft
+From row 5, col 5, go to UpLeft
+From row 4, col 4, go to DownLeft
+From row 5, col 3, go to Down
+From row 6, col 3, go to Down
+From row 7, col 3, go to Down
+From row 8, col 3, go to DownLeft
+From row 9, col 2, go to Left
+From row 9, col 1, go to Left
+
+
+
+The maze content:
+.........>
+##.#..#.X#
+.#..###X#.
+###.###X..
+.###X#XX..
+..#X#X####
+#..X###.##
+.#.X#....#
+..#X###...
+<XX#...##.
+
+What action would you like to perform?

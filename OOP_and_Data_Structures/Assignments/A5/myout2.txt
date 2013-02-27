@@ -1,0 +1,26 @@
+Choice		Action
+------		------
+A		Add Account
+B		Update Balance
+D		Search for Account
+L		List Accounts
+Q		Quit
+?		Display Help
+
+What action would you like to perform?
+Please enter an account information to add:
+What action would you like to perform?
+Please enter an account information to add:
+What action would you like to perform?
+Please enter an account information to add:
+What action would you like to perform?
+Unknown action
+What action would you like to perform?
+Unknown action
+What action would you like to perform?
+Unknown action
+What action would you like to perform?
+Unknown action
+What action would you like to perform?
+Unknown action
+What action would you like to perform?

@@ -1,0 +1,26 @@
+Choice		Action
+------		------
+A		Add Bank
+D		Display Bank
+Q		Quit
+?		Display Help
+
+What action would you like to perform?
+Please enter the bank information:
+Enter a bank name:
+Enter a bank ID:
+Enter a city of the bank:
+Enter a state of the bank:
+What action would you like to perform?
+Please enter the bank information:
+Enter a bank name:
+Enter a bank ID:
+Enter a city of the bank:
+Enter a state of the bank:
+What action would you like to perform?
+
+Bank name:		Bank of Los Angeles
+Bank ID:		2234
+Bank address:		Los Angeles,CA
+
+What action would you like to perform?

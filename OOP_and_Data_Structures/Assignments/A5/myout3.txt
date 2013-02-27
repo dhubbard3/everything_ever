@@ -1,0 +1,70 @@
+Choice		Action
+------		------
+A		Add Account
+B		Update Balance
+D		Search for Account
+L		List Accounts
+Q		Quit
+?		Display Help
+
+What action would you like to perform?
+Please enter an account information to add:
+What action would you like to perform?
+Choice		Action
+------		------
+A		Add Account
+B		Update Balance
+D		Search for Account
+L		List Accounts
+Q		Quit
+?		Display Help
+
+What action would you like to perform?
+Please enter an account information to add:
+What action would you like to perform?
+Please enter an account information to add:
+What action would you like to perform?
+
+Money Market Account:
+Account ID:		5000
+Balance:		$4,000.00
+Interest:		10%
+Penalty:		2,000%
+
+
+Saving Account:
+Account ID:		5001
+Balance:		$1,000.00
+Interest:		1%
+
+
+Checking Account:
+Account ID:		5002
+Balance:		$1,500.00
+Interest:		8%
+Number of Used Checks:	40
+
+What action would you like to perform?
+balance updated
+What action would you like to perform?
+
+Money Market Account:
+Account ID:		5000
+Balance:		$4,400.00
+Interest:		10%
+Penalty:		2,000%
+
+
+Saving Account:
+Account ID:		5001
+Balance:		$1,010.00
+Interest:		1%
+
+
+Checking Account:
+Account ID:		5002
+Balance:		$1,500.00
+Interest:		8%
+Number of Used Checks:	40
+
+What action would you like to perform?
